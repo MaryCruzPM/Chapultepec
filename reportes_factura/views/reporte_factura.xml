@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_factura_add" inherit_id="l10n_mx_edi.report_invoice_document_mx"> 
+     
+            <xpath expr="//h2[1]" position="before"> <!--before antes de o afeter despues de   -->
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                                    <t t-set="address">
+                                        <address t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;]}"/>
+                                        <div t-if="o.partner_id.vat" class="mt16"> <span t-field="o.partner_id.vat"/></div>
+                                        
+                                    </t>
+                                    <span t-field="o.partner_id.vat"/>
+                <t t-if="o.l10n_mx_edi_cfdi_uuid">
+                    <div class="row" id="complement">
+                        <div class="barcode col-7">
+                            <t t-set="sello" t-value="xml.get('Sello', 'No identificado')[-8:]"/>
+
+                                 <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
+
+                                    <table class="table table-sm o_main_table" name="invoice_line_table">
+                                        <thead>
+                                            <tr>
+                                                <!-- TODO: remove in master -->
+                                                <t t-set="colspan" t-value="6"/>
+                                                <th class="text-left"><span>Cliente</span></th>
+                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody class="invoice_tbody">                                      
+                                            <span t-field="o.partner_id.vat"/>
+
+                                            
+                                        </tbody>
+                                    </table>
+
+
+
+    
+                            
+                        </div>
+                        <div class="complement-details col-5">
+                            
+                            <!-- <div class="digital-stamp">
+                                <span>Extra Info</span>
+                            </div> -->
+                            <div class="digital-stamp-content">
+                                <div class="digital-stamp">
+                                   <span>Emitter certificate:</span> 
+                                </div>
+                                <span>Emitter certificate:</span> <span t-esc="xml.get('noCertificado', xml.get('NoCertificado'))"/>
+                                <span> | SAT Certificate:</span> <span t-esc="tfd.get('NoCertificadoSAT')"/>
+                                <div class="digital-stamp">
+                                   <span>| Expedition place:</span>
+                                </div>
+                                <span> | Expedition place:</span> <span t-esc="xml.get('LugarExpedicion')"/>
+                                <div class="digital-stamp">
+                                   <span>| Fiscal Regime:</span>
+                                </div>
+                                <span> | Fiscal Regime:</span><span t-esc="xml.Emisor.get('RegimenFiscal', '')"/>
+                                <div class="digital-stamp">
+                                   <span>| Emission Date:</span>
+                                </div>
+                                <span> | Emission Date:</span> <span t-esc="xml.get('fecha', xml.get('Fecha', '')).replace('T', ' ')"/>
+                                <div class="digital-stamp">
+                                   <span>| Certification Date:</span>
+                                </div>
+                                <span> | Certification Date:</span> <span t-esc="tfd.get('FechaTimbrado', '').replace('T', ' ')"/>
+                                <div class="digital-stamp">
+                                   <span>| Fiscal Folio:</span>
+                                </div>
+                                <span> | Fiscal Folio:</span> <span t-esc="tfd.get('UUID')"/>
+                            </div>
+                            <div class="digital-stamp-content text-center">
+                                <strong>This document is a printed representation of a CFDI</strong>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </xpath> 
+
+            <xpath expr="//h2[1]" position="before"> <!--before antes de o afeter despues de   -->
+                <t t-if="o.l10n_mx_edi_cfdi_uuid">
+                    <div class="row" id="complement">
+                        <div class="barcode col-7">
+                            <t t-set="sello" t-value="xml.get('Sello', 'No identificado')[-8:]"/>
+                            
+                        </div>
+                        
+                    </div>
+                </t>
+            </xpath> 
+    </template>
+</odoo>
