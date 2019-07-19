@@ -3,13 +3,15 @@
     <template id="report_factura_add" inherit_id="l10n_mx_edi.report_invoice_document_mx"> 
      
             <xpath expr="//h2[1]" position="before"> <!--before antes de o afeter despues de   -->
-                <t t-set="o" t-value="o.with_context(lang=lang)"/>
-                                    <t t-set="address">
-                                        <address t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;]}"/>
-                                        <div t-if="o.partner_id.vat" class="mt16"> <span t-field="o.partner_id.vat"/></div>
+              <!-- <img  class="img-fluid" src = "/reportes_factura/static/src/img/descarga.jpeg?access_token=a4637768-9c62-49a7-accb-859a8e0c6f1a" margin_top='20'/>  --><!-- insertar una imagen en esta parte se podria posicionar la seunda imagen de logo de la otra empresa de chapultepec -->
+                <!-- <img class="img-fluid" src="/website/static/src/img/backgrounds/sails.jpg?access_token=a4637768-9c62-49a7-accb-859a8e0c6f1a"/>  -->
+               <!--  <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                    <t t-set="address">
+                        <address t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;]}"/>
+                        <div t-if="o.partner_id.vat" class="mt16"> <span t-field="o.partner_id.vat"/></div>
                                         
-                                    </t>
-                                    <span t-field="o.partner_id.vat"/>
+                    </t> 
+                    <span t-field="o.partner_id.vat"/>-->
                 <t t-if="o.l10n_mx_edi_cfdi_uuid">
                     <div class="row" id="complement">
                         <div class="barcode col-7">
@@ -22,14 +24,30 @@
                                             <tr>
                                                 <!-- TODO: remove in master -->
                                                 <t t-set="colspan" t-value="6"/>
-                                                <th class="text-left"><span>Cliente</span></th>
+                                                <th class="text-left"><span>Cliente XX</span></th>
                                                
                                             </tr>
                                         </thead>
                                         <tbody class="invoice_tbody">                                      
+                                            <span t-field="o.partner_id"/>
+                                            <br/>
                                             <span t-field="o.partner_id.vat"/>
+                                            <br/>
+                                            <span t-field="o.partner_id.l10n_mx_edi_colony"/>
+                                             <span t-field="o.partner_id.l10n_mx_edi_locality"/>
+                                            <br/>
+                                            <span t-field="o.partner_id.zip"/>
+                                            <br/>
+                                            <span t-field="o.commercial_partner_id.name"/>
+                                            <br/>
+                                            <span t-field="o.x_student"/>
+                                            <br/>
+                                            <span t-field="o.x_estudiante"/>
+                                            <br/>
+                                            <span t-field="o.x_estudiante.x_matricula"/>
+                                          
 
-                                            
+
                                         </tbody>
                                     </table>
 
@@ -78,7 +96,7 @@
                 </t>
             </xpath> 
 
-            <xpath expr="//h2[1]" position="before"> <!--before antes de o afeter despues de   -->
+           <!--  <xpath expr="//h2[1]" position="before">
                 <t t-if="o.l10n_mx_edi_cfdi_uuid">
                     <div class="row" id="complement">
                         <div class="barcode col-7">
@@ -88,6 +106,10 @@
                         
                     </div>
                 </t>
+            </xpath>  -->
+            <xpath expr="//h2[1]" position="before">
+                
             </xpath> 
+
     </template>
 </odoo>
