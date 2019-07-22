@@ -18,49 +18,84 @@
                             <t t-set="sello" t-value="xml.get('Sello', 'No identificado')[-8:]"/>
 
                                  <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
-
-                                    <table class="table table-sm o_main_table" name="invoice_line_table">
+                                    <div class="table-responsive-sm">
+                                    <table class="table-sm" align="left" border="0" width="80%" name="invoice_line_table">
                                         <thead>
                                             <tr>
                                                 <!-- TODO: remove in master -->
-                                                <t t-set="colspan" t-value="6"/>
+                                                <t t-set="colspan" t-value="8"/>
                                                 <th class="text-left"><span>Cliente XX</span></th>
-                                               
+
+                                                <th class="text-left"><span>Matrícula XX</span></th>                                               
                                             </tr>
                                         </thead>
-                                        <tbody class="invoice_tbody">                                      
-                                            <span t-field="o.partner_id"/>
-                                            <br/>
-                                            <span t-field="o.partner_id.vat"/>
-                                            <br/>
-                                            <span t-field="o.partner_id.l10n_mx_edi_colony"/>
-                                             <span t-field="o.partner_id.l10n_mx_edi_locality"/>
-                                            <br/>
-                                            <span t-field="o.partner_id.zip"/>
-                                            <br/>
-                                            <span t-field="o.commercial_partner_id.name"/>
-                                            <br/>
-                                            <span t-field="o.x_student"/>
-                                            <br/>
-                                            <span t-field="o.x_estudiante"/>
-                                            <br/>
-                                            <span t-field="o.x_estudiante.x_matricula"/>
-                                          
+                                        <tbody class="invoice_tbody">
 
-
-                                        </tbody>
+                                            <tr>
+                                                <td>
+                                                    <span t-field="o.partner_id"></span>
+                                                    <br/>
+                                                    <span t-field="o.partner_id.vat"></span>
+                                                    <br/>
+                                                    <span t-field="o.partner_id.l10n_mx_edi_colony"/>
+                                                    <span t-field="o.partner_id.l10n_mx_edi_locality"/>
+                                                    <br/>
+                                                    <span t-field="o.partner_id.zip"/>
+                                                    <br/>
+                                                    <span t-field="o.commercial_partner_id.name"/>
+                                                    <br/>
+                                                    <span t-field="o.partner_id.zip"></span>
+                                                </td>
+                                                <td>                                             
+                                                    <span t-field="o.x_estudiante.x_matricula"/> 
+                                                </td>
+                                            </tr>
+                                        </tbody>                                        
                                     </table>
+                                </div>
 
+                                <div class="table-responsive-sm o_main_table">
+                                    <table class="table table-sm" align="left" border="0" width="80%" name="invoice_line_table">
+                                        <thead>
+                                            <tr>
+                                                <!-- TODO: remove in master -->
+                                                <t t-set="colspan" t-value="4"/>
+                                                <th class="text-left"><span>   Nombre   </span></th>
+                                                <th class="text-left"><span>   Sección   </span></th>
+                                                <th class="text-left"><span>   Grado    </span></th>
+                                                <th class="text-left"><span>   Grupo   </span></th>
+                                                <th class="text-left"><span>   CURP   </span></th>                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody class="invoice_tbody">
 
-
+                                            <tr>
+                                                <td>
+                                                    <span t-field="o.x_student"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.x_estudiante"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.x_estudiante.course_detail_ids.batch_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.x_estudiante.course_detail_ids.course_id.section"/>
+                                                </td>
+                                                <td>                                                   
+                                                    <span t-field="o.x_estudiante.x_matricula"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>                                      
+                                    </table>
+<!-- 
+                                    <table class="table table-sm o_main_table" name="invoice_line_table"> -->
+                                </div>
+                                    
     
                             
                         </div>
                         <div class="complement-details col-5">
-                            
-                            <!-- <div class="digital-stamp">
-                                <span>Extra Info</span>
-                            </div> -->
                             <div class="digital-stamp-content">
                                 <div class="digital-stamp">
                                    <span>Emitter certificate:</span> 
@@ -96,17 +131,6 @@
                 </t>
             </xpath> 
 
-           <!--  <xpath expr="//h2[1]" position="before">
-                <t t-if="o.l10n_mx_edi_cfdi_uuid">
-                    <div class="row" id="complement">
-                        <div class="barcode col-7">
-                            <t t-set="sello" t-value="xml.get('Sello', 'No identificado')[-8:]"/>
-                            
-                        </div>
-                        
-                    </div>
-                </t>
-            </xpath>  -->
             <xpath expr="//h2[1]" position="before">
                 
             </xpath> 

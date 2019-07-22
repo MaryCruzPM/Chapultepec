@@ -24,6 +24,8 @@ class dependsModel(models.Model):
         print(alumno.x_matricula)
         self.x_estudiante=alumno #cacho los datos del estudiante del modelo op.student solo en reporte hay que modificar que dato queremos
         self.x_student=alumno.name
+        print(self.x_estudiante.course_detail_ids.batch_id.name) #grupo de studiante 
+        print(self.x_estudiante.course_detail_ids.course_id.name)
 
 
     # @api.constrains('x_student')
